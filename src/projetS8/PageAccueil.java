@@ -12,15 +12,15 @@ public class PageAccueil extends JFrame {
         setTitle("Page d'Accueil");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        // Création des boutons
+        //Ici, on crée les boutons 
         JButton btnGestionComptes = new JButton("Gérer liste de comptes et MDP");
         JButton btnVisualiserHistorique = new JButton("Visualiser historique de connexion");
         JButton btnAfficherNombreClubs = new JButton("Afficher le nombre de clubs d'une fédération dans une commune");
         
-        // Création du champ de texte
+        
         JTextField textFieldCommune = new JTextField(20);
         
-        // Création du panneau pour organiser les éléments
+        // Création du JPanel
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); // Ajout de la marge
@@ -37,7 +37,7 @@ public class PageAccueil extends JFrame {
         
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("Afficher le nombre de clubs d'une fédération dans une commune :"), gbc);
+        panel.add(new JLabel("Afficher le nombre de clubs d'une fédération dans une commune, saisir le nom de commune ci-dessous :"), gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -47,19 +47,17 @@ public class PageAccueil extends JFrame {
         gbc.gridy = 4;
         panel.add(btnAfficherNombreClubs, gbc);
         
-        // Ajout du panneau à la fenêtre
+        // Ajout du jpanel
         add(panel);
         
-        // Redimensionner la fenêtre pour s'adapter au contenu
+        // pack adapte la fenetre au contenu 
         pack();
-        
-        // Afficher la fenêtre au centre de l'écran
         setLocationRelativeTo(null);
         
-        // Rendre la fenêtre visible
+        //visibilité de la fenetre 
         setVisible(true);
         
-        // Action lorsque le bouton "Afficher le nombre de clubs" est cliqué
+        // lorsque on clique sur le btn : 
         btnAfficherNombreClubs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String commune = textFieldCommune.getText();
