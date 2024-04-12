@@ -1,38 +1,47 @@
-package projetS8;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class PageAccueil extends JFrame {
+public class PageAccueilGUI extends JFrame {
     
-	private static final long serialVersionUID = 1L; // Ajout du serialVersionUID
-	 
-    public PageAccueil() {
+    private static final long serialVersionUID = 1L;
+    private final Font mainFont = new Font("Free Serif", Font.BOLD, 18);
+
+    public PageAccueilGUI() {
         setTitle("Page d'Accueil");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        //Ici, on crée les boutons 
+        // Création des boutons avec leurs textes correspondants
         JButton btnGestionComptes = new JButton("Gérer liste de comptes et MDP");
         JButton btnVisualiserHistorique = new JButton("Visualiser historique de connexion");
         JButton btnAfficherNombreClubs = new JButton("Afficher le nombre de clubs d'une fédération dans une commune");
         
+        // Appliquer le style visuel avec la police de caractères principale
+        btnGestionComptes.setFont(mainFont);
+        btnVisualiserHistorique.setFont(mainFont);
+        btnAfficherNombreClubs.setFont(mainFont);
         
+        // Création du champ de texte pour saisir le nom de la commune
         JTextField textFieldCommune = new JTextField(20);
+        textFieldCommune.setFont(mainFont);
         
-        // Création du JPanel
+        // Création du JPanel avec GridBagLayout comme gestionnaire de disposition
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10); // Ajout de la marge
         
-        // Ajout des éléments au panneau
+        // Ajout des éléments au panneau avec des contraintes de grille spécifiées
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(btnGestionComptes, gbc);
         
+        // Augmentation de la marge inférieure pour le bouton "Visualiser historique"
         gbc.gridx = 0;
         gbc.gridy = 1;
+        gbc.insets.bottom = 50; // Ajout d'une marge inférieure supplémentaire de 20 pixels
         panel.add(btnVisualiserHistorique, gbc);
         
         gbc.gridx = 0;
@@ -47,31 +56,35 @@ public class PageAccueil extends JFrame {
         gbc.gridy = 4;
         panel.add(btnAfficherNombreClubs, gbc);
         
-        // Ajout du jpanel
+        // Appliquer le style visuel avec la couleur de fond du panneau
+        panel.setBackground(new Color(128, 128, 255));
+        
+        // Ajout du panneau à la fenêtre principale
         add(panel);
         
-        // pack adapte la fenetre au contenu 
+        // Ajustement de la taille de la fenêtre en fonction de son contenu et centrage sur l'écran
         pack();
         setLocationRelativeTo(null);
         
-        //visibilité de la fenetre 
+        // Rendre la fenêtre visible
         setVisible(true);
         
-        // lorsque on clique sur le btn : 
+        // Ajout d'un écouteur d'événements au bouton "Afficher le nombre de clubs"
         btnAfficherNombreClubs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Récupération du texte saisi dans le champ de texte pour le nom de la commune
                 String commune = textFieldCommune.getText();
-                // Ici, vous pouvez mettre le code pour afficher le nombre de clubs dans la commune spécifiée
-                // par exemple, une méthode pour effectuer une recherche dans une base de données ou un autre traitement
-                JOptionPane.showMessageDialog(PageAccueil.this, "Vous avez entré : " + commune);
+                // Affichage d'un message avec le nom de la commune saisie
+                JOptionPane.showMessageDialog(PageAccueilGUI.this, "Vous avez entré : " + commune);
             }
         });
     }
     
+    // Méthode principale pour exécuter l'application
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new PageAccueil();
+                new PageAccueilGUI(); // Création d'une instance de PageAccueil
             }
         });
     }
